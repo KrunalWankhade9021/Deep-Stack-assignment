@@ -27,10 +27,8 @@ def validate_user(input_file):
         temperature=0,
         response_format={"type": "json_object"},
         messages=[
-            # CHANGE: Move the rules to the 'system' role
-            {"role": "system", "content": system_prompt}, 
             
-            # CHANGE: Pass ONLY the JSON data to the 'user' role
+            {"role": "system", "content": system_prompt}, 
             {"role": "user", "content": json.dumps(user_data)} 
         ]
     )
