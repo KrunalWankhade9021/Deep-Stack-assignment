@@ -1,0 +1,79 @@
+# yaml-language-server: $schema=https://promptfoo.dev/config-schema.json
+
+prompts:
+  - "{{input_file}}"
+
+providers:
+  - id: "exec:d:/DeepStack_Assigment_submission/venv/Scripts/python.exe validate_user.py {{input_file}}"
+
+tests:
+  - vars:
+      input_file: "test_input/input_1.json"
+    assert: 
+      - type: is-json
+        value:
+          type: object
+          properties:
+            is_valid: { type: boolean }
+            errors: { type: array, items: { type: string } }
+            warnings: { type: array, items: { type: string } }
+          required: ["is_valid", "errors", "warnings"]
+          additionalProperties: false
+      - type: javascript
+        value: |
+          const r = JSON.parse(output);
+          return r.is_valid === false && r.errors.length > 0;
+  
+  - vars:
+      input_file: "test_input/input_2.json"
+    assert: 
+      - &schema_check
+        type: is-json
+        value:
+          type: object
+          properties:
+            is_valid: { type: boolean }
+            errors: { type: array, items: { type: string } }
+            warnings: { type: array, items: { type: string } }
+          required: ["is_valid", "errors", "warnings"]
+          additionalProperties: false
+      - type: javascript
+        value: |
+          const r = JSON.parse(output);
+          return r.is_valid === true && r.errors.length === 0;
+
+  - vars:
+      input_file: "test_input/input_3.json"
+    assert: 
+      - *schema_check
+      - type: javascript
+        value: |
+          const r = JSON.parse(output);
+          return r.is_valid === false && r.errors.length > 0;
+
+  - vars:
+      input_file: "test_input/input_4.json"
+    assert: 
+      - *schema_check
+      - type: javascript
+        value: |
+          const r = JSON.parse(output);
+          return r.is_valid === false && r.errors.length > 0;
+
+  - vars:
+      input_file: "test_input/input_5.json"
+    assert: 
+      - *schema_check
+      - type: javascript
+        value: |
+          const r = JSON.parse(output);
+          return r.is_valid === false && r.errors.length > 0;
+
+  - vars:
+      input_file: "test_input/input_6.json"
+    assert: 
+      - *schema_check
+      - type: javascript
+        value: |
+          const r = JSON.parse(output);
+          return r.is_valid === true && r.errors.length === 0;
