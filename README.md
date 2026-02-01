@@ -27,7 +27,7 @@ This project implements an LLM-based data validation engine using `groq` and `pr
 
    ```bash
    pip install -r requirements.txt
-   npm install
+   npm install -g promptfoo@latest
    ```
 4. **Configure Environment**:
    Copy `.env.example` to `.env` and add your Groq API key:
@@ -83,4 +83,4 @@ The evaluation suite covers:
 * Schema Correctness (Valid JSON structure)
 * No Hallucination (Strict field checking)
 * Classification Accuracy (Valid vs Invalid inputs)
-* Edge Cases (SQL Injection, Null values, mixed valid/invalid fields)
+
