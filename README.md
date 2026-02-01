@@ -11,8 +11,8 @@ This project implements an LLM-based data validation engine using `groq` and `pr
 1. **Clone the repository**:
 
    ```bash
-   git clone <repository_url>
-   cd DeepStack_Assigment_submission
+   git clone https://github.com/KrunalWankhade9021/Deep-Stack-assignment
+   cd Deep-Stack-assignment
    ```
 2. **Create a Virtual Environment**:
 
